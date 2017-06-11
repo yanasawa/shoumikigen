@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		195989E81EDAAAB0001F3272 /* holzonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195989E71EDAAAB0001F3272 /* holzonViewController.swift */; };
+		19A36A9E1EECF1A20039E3D2 /* Relme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A36A9D1EECF1A20039E3D2 /* Relme.swift */; };
 		19E417C51EAE421F0064E97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E417C41EAE421F0064E97C /* AppDelegate.swift */; };
 		19E417C71EAE421F0064E97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E417C61EAE421F0064E97C /* ViewController.swift */; };
 		19E417CA1EAE421F0064E97C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E417C81EAE421F0064E97C /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		195989E71EDAAAB0001F3272 /* holzonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = holzonViewController.swift; sourceTree = "<group>"; };
+		19A36A9D1EECF1A20039E3D2 /* Relme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relme.swift; sourceTree = "<group>"; };
 		19E417C11EAE421F0064E97C /* shoumikigen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shoumikigen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E417C41EAE421F0064E97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19E417C61EAE421F0064E97C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				19E417D31EAE42200064E97C /* Info.plist */,
 				19E417CB1EAE421F0064E97C /* shoumikigen.xcdatamodeld */,
 				195989E71EDAAAB0001F3272 /* holzonViewController.swift */,
+				19A36A9D1EECF1A20039E3D2 /* Relme.swift */,
 			);
 			path = shoumikigen;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				19E417CD1EAE421F0064E97C /* shoumikigen.xcdatamodeld in Sources */,
 				195989E81EDAAAB0001F3272 /* holzonViewController.swift in Sources */,
 				19E417C71EAE421F0064E97C /* ViewController.swift in Sources */,
+				19A36A9E1EECF1A20039E3D2 /* Relme.swift in Sources */,
 				19E417C51EAE421F0064E97C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

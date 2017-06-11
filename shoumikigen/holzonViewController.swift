@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
 
-class holzonViewController: UIViewController {
+class holzonViewController: UIViewController,UITextFieldDelegate {
     
+    
+    
+    let realm = try! Realm()
+    static var image : UIImage!
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var imageView: UIImageView!
     var num = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTextField.delegate = self
+        imageView.image = holzonViewController.image
         
         
         // Do any additional setup after loading the view.
@@ -20,27 +32,92 @@ class holzonViewController: UIViewController {
     
     @IBAction func hozon(){
         
-        let alert:UIAlertController = UIAlertController(title: "保存",message:"保存しました",
-                                                        preferredStyle: .alert)
+        let realmModelSample = Relme()
         
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style:.default,
-            handler: {action in
-                
-                print("OKボタンが押されました!")
+        
+        let resultModel = realm.objects(Relme.self).sorted(byKeyPath: "id", ascending: true).last
+        
+        if resultModel != nil   {
+            realmModelSample.id = (resultModel?.id)! + 1
+        }else{
+            realmModelSample.id = 0
         }
+        
+        
+        
+        realmModelSample.name = nameTextField.text!
+        
+        realmModelSample.image = UIImageJPEGRepresentation(imageView.image!, 0.0)! as NSData
+        
+        realmModelSample.date = datePicker.date
+        
+        
+        // データを追加
+        try! realm.write() {
+            realm.add(realmModelSample)
+        }
+        
+        let realmModelArray = realm.objects(Relme)
+        
+        
+        // ためしに名前を表示
+        for realmModel in realmModelArray {
+            print("id: \(realmModel.id)")
+            print("name: \(realmModel.name)")
+            print(": \(realmModel.date)")
+        }
+        
+        let alert:UIAlertController = UIAlertController(title: "保存", message: "保存してもいいですか？", preferredStyle: .alert)
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style:.default,
+                handler: {action in
+                    
+                    NSLog("OKボタンが押されました！")
+                    
+            }
+                
             )
         )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "キャンセル",
+                style:.cancel,
+                handler: {action in
+                    
+                    NSLog("OKボタンが押されました！")
+                    
+            }
+                
+            )
+        )
+        
         present(alert, animated: true, completion: nil)
+
+        
+        
+        
+        
+        
+        
         
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        
+        
+        // キーボードを閉じる
+        textField.resignFirstResponder()
+        
+        return true
+    }
     
     /*
      // MARK: - Navigation

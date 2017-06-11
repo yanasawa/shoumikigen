@@ -11,6 +11,9 @@ import RealmSwift
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    let realm = try! Realm()
+
+
     var imageView: UIImageView!
     
     @IBOutlet var shoumikigen: UILabel!
@@ -18,10 +21,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func takephoto() {
+        
         
     }
     
@@ -55,6 +60,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         
         self.dismiss(animated: true){
+            holzonViewController.image = pickedImage
             self.performSegue(withIdentifier: "toNextView", sender: nil)
         }
     }
