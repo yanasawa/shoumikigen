@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class holzonViewController: UIViewController,UITextFieldDelegate {
     
@@ -32,30 +33,6 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func hozon(){
         
-        let realmModelSample = Relme()
-        
-        
-        let resultModel = realm.objects(Relme.self).sorted(byKeyPath: "id", ascending: true).last
-        
-        if resultModel != nil   {
-            realmModelSample.id = (resultModel?.id)! + 1
-        }else{
-            realmModelSample.id = 0
-        }
-        
-        
-        
-        realmModelSample.name = nameTextField.text!
-        
-        realmModelSample.image = UIImageJPEGRepresentation(imageView.image!, 0.0)! as NSData
-        
-        realmModelSample.date = datePicker.date
-        
-        
-        // データを追加
-        try! realm.write() {
-            realm.add(realmModelSample)
-        }
         
         let realmModelArray = realm.objects(Relme)
         
@@ -77,6 +54,49 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
                     
                     NSLog("OKボタンが押されました！")
                     
+                    //保存
+                    let realmModelSample = Relme()
+                    let resultModel = self.realm.objects(Relme.self).sorted(byKeyPath: "id", ascending: true).last
+                    
+                    if resultModel != nil   {
+                        realmModelSample.id = (resultModel?.id)! + 1
+                    }else{
+                        realmModelSample.id = 0
+                    }
+                    
+                    
+                    
+                    realmModelSample.name = self.nameTextField.text!
+                    
+                    realmModelSample.image = UIImageJPEGRepresentation(self.imageView.image!, 0.0)! as NSData
+                    
+                    realmModelSample.date = self.datePicker.date
+                    
+                    
+                    // データを追加
+                    try! self.realm.write() {
+                        self.realm.add(realmModelSample)
+                    }
+
+                    
+                    
+                    //通知の登録
+                    let content = UNMutableNotificationContent()
+                    content.title = "Title"
+                    content.subtitle = "Subtitle" // 新登場！
+                    content.body = "Body"
+                    content.sound = UNNotificationSound.default()
+                    
+                    
+                    
+                    // 5秒後に発火
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+                    let request = UNNotificationRequest(identifier: "FiveSecond",
+                                                        content: content,
+                                                        trigger: trigger)
+                    // ローカル通知予約
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    
             }
                 
             )
@@ -96,7 +116,7 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
         )
         
         present(alert, animated: true, completion: nil)
-
+        
         
         
         

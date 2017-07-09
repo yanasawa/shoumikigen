@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shoumikigen/hozonzumiViewController.swift"
+            timestampString = "520067746.365545"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "hozonzumiViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shoumikigen.hozonzumiViewController.table.getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UITableView&gt;"
+                  moduleName = "shoumikigen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yanagisawahiroki/Desktop/shoumikigen/shoumikigen/hozonzumiViewController.swift"
+                  timestampString = "520067747.322539"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shoumikigen.hozonzumiViewController.table.setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UITableView&gt;"
+                  moduleName = "shoumikigen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yanagisawahiroki/Desktop/shoumikigen/shoumikigen/hozonzumiViewController.swift"
+                  timestampString = "520067747.323916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shoumikigen.hozonzumiViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; shoumikigen.hozonzumiViewController"
+                  moduleName = "shoumikigen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yanagisawahiroki/Desktop/shoumikigen/shoumikigen/hozonzumiViewController.swift"
+                  timestampString = "520067747.325588"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shoumikigen.hozonzumiViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;shoumikigen.hozonzumiViewController&gt;"
+                  moduleName = "shoumikigen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yanagisawahiroki/Desktop/shoumikigen/shoumikigen/hozonzumiViewController.swift"
+                  timestampString = "520067747.326975"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
