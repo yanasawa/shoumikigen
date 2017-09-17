@@ -16,6 +16,7 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
     
     let realm = try! Realm()
     static var image : UIImage!
+    var realmArray : [Relme]! = []
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -26,6 +27,8 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         nameTextField.delegate = self
         imageView.image = holzonViewController.image
+        realmArray  = Array(realm.objects(Relme))
+        
         
         
         // Do any additional setup after loading the view.
@@ -68,7 +71,7 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
                     
                     realmModelSample.name = self.nameTextField.text!
                     
-                    realmModelSample.image = UIImageJPEGRepresentation(self.imageView.image!, 0.0)! as NSData
+                    realmModelSample.image = UIImageJPEGRepresentation(self.imageView.image!.resizeUIImage(width: 80, height: 80), 0.0)! as NSData
                     
                     realmModelSample.date = self.datePicker.date
                     
@@ -77,26 +80,42 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
                     try! self.realm.write() {
                         self.realm.add(realmModelSample)
                     }
-
                     
                     
-                    //通知の登録
+                    
                     let content = UNMutableNotificationContent()
-                    content.title = "Title"
-                    content.subtitle = "Subtitle" // 新登場！
-                    content.body = "Body"
+                    content.title = "賞味期限"
+                    content.subtitle = "賞味期限が近づいている食品があります！" // 新登場！
+                    content.body = "確認してください！"
                     content.sound = UNNotificationSound.default()
+                    let calendar = Calendar.current
+                    
+                    let year = calendar.component(.year, from: self.datePicker.date)
+                    let month = calendar.component(.month, from: self.datePicker.date)
+                    let day = calendar.component(.day, from: self.datePicker.date)
+                    let hour = calendar.component(.hour, from: self.datePicker.date)
+                    let second = calendar.component(.second, from: self.datePicker.date)
+                    let minute = calendar.component(.minute, from: self.datePicker.date)
+                    
+               
+                    print(year)
+                    print(month)
+                    print(day)
+                    print(hour)
+                    print(minute)
+                    print(second)
                     
                     
+                    let component = DateComponents(calendar: Calendar.current, year: year, month: month, day: day, hour: hour,minute : minute, second: second)
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
                     
-                    // 5秒後に発火
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+                
                     let request = UNNotificationRequest(identifier: "FiveSecond",
                                                         content: content,
                                                         trigger: trigger)
+                    
                     // ローカル通知予約
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    
             }
                 
             )
@@ -108,7 +127,7 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
                 style:.cancel,
                 handler: {action in
                     
-                    NSLog("OKボタンが押されました！")
+                    NSLog("キャンセルボタンが押されました！")
                     
             }
                 
@@ -148,5 +167,24 @@ class holzonViewController: UIViewController,UITextFieldDelegate {
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+extension UIImage{
+    
+    // 画質を担保したままResizeするクラスメソッド.
+    func resizeUIImage(width : CGFloat, height : CGFloat)-> UIImage!{
+        
+        let size = CGSize(width: width, height: height)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        var context = UIGraphicsGetCurrentContext()
+        
+        self.draw(in: CGRect(x:0, y:0, width:size.width,height: size.height))
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
     
 }

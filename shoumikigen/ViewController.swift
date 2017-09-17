@@ -17,75 +17,30 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     var imageView: UIImageView!
     var cameraImageView: UIImageView!
-    @IBOutlet var shoumikigen: UILabel!
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if #available(iOS 10.0, *) {
-            // iOS 10
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
-                if error != nil {
-                    return
-                }
-                
-                if granted {
-                    debugPrint("通知許可")
-                } else {
-                    debugPrint("通知拒否")
-                }
-            })
-            
-        } else {
-            // iOS 9
-            let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-        }
-        
-        
-        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    // フォアグラウンドで通知受信
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
-        //...
-    }
-    
-    
-    
-    @IBAction func takephoto() {
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
+    @IBAction func takephoto(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             
             let picker = UIImagePickerController()
-            picker.sourceType = .camera
-            picker.delegate = self
-            picker.allowsEditing = true
+            picker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            picker.delegate = self // UINavigationControllerDelegate と　UIImagePickerControllerDelegateを実装する
+            picker.sourceType = UIImagePickerControllerSourceType.camera
             
-            present(picker, animated: true, completion: nil)
-        }else{
-            print("error")
+            self.present(picker, animated: true, completion: nil)
         }
-        }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickerMediaWithInfo info:[String : Any]) {
-        cameraImageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        
-        dismiss(animated: true, completion: nil)
-    
     }
-        
     
-    
-    @IBAction func hozonzumi() {
  
-    }
+    
+          
+    
+    
     
     
     @IBAction func sendphoto(){

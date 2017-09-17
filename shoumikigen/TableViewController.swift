@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TableViewController: UIViewController ,UITableViewDataSource{
+class TableViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     
     @IBOutlet var tableView: UITableView!
     
@@ -21,9 +21,10 @@ class TableViewController: UIViewController ,UITableViewDataSource{
         
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil),  forCellReuseIdentifier: "costomCell")
         tableView.dataSource = self
-         realmArray  = Array(realm.objects(Relme))
+        tableView.delegate = self
+        realmArray  = Array(realm.objects(Relme))
         
-       
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -51,17 +52,39 @@ class TableViewController: UIViewController ,UITableViewDataSource{
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale!
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         let dateText = dateFormatter.string(from: realmArray[indexPath.row].date)
+        
+        var image = UIImage(data: realmArray[indexPath.row].image as Data)
         
         
         cell.label1.text = dateText
         cell.label2.text = realmArray[indexPath.row].name
+        cell.imageView?.image = image
+        
         
         
         return cell
         
-    }    }
+    }
+    
+     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat { return 80
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            try! self.realm.write() {
+                realm.delete(realmArray[indexPath.row])
+            }
+            
+            realmArray.remove(at: indexPath.row)
+            tableView.reloadData()
+        
+        }
+    }
+
+}
 
 /*
  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
